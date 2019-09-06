@@ -1,0 +1,19 @@
+pip install profanityfilter
+from profanityfilter import ProfanityFilter
+pf = ProfanityFilter()
+pf.censor("That's bullshit!")
+> "That's ********!"
+pf.set_censor("@")
+pf.censor("That's bullshit!")
+>"That's @@@@@@@@!"
+pf.define_words(["icecream", "choco"])
+pf.censor("I love icecream and choco!")
+>'I love @@@@@@@@ and @@@@@!'
+pf.is_clean("That's awesome!")
+>True
+pf_custom = ProfanityFilter(custom_censor_list=["chocolate", "orange"])
+pf_custom.censor("Fuck orange chocolates")
+>'Fuck ****** **********'
+pf_extended = ProfanityFilter(extra_censor_list=["chocolate", "orange"])
+pf_extended.censor("Fuck orange chocolates")
+>'**** ****** **********'
